@@ -1,0 +1,371 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Login | Acme Retail Dashboard</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, Arial, sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .loginShell {
+        width: 100%;
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 24px;
+      }
+
+      .heroCard,
+      .loginCard {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 28px;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
+      }
+
+      .heroCard {
+        padding: 40px 36px;
+        background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .heroCard::after {
+        content: "";
+        position: absolute;
+        inset: auto -80px -100px auto;
+        width: 220px;
+        height: 220px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+      }
+
+      .heroBadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 20px;
+      }
+
+      .heroCard h1 {
+        margin: 0 0 14px;
+        font-size: 36px;
+        line-height: 1.15;
+        font-weight: 800;
+      }
+
+      .heroCard p {
+        margin: 0 0 28px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.84);
+        max-width: 480px;
+      }
+
+      .heroList {
+        display: grid;
+        gap: 14px;
+      }
+
+      .heroItem {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .heroItem strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .heroItem span {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .loginCard {
+        padding: 34px 30px;
+      }
+
+      .loginCard h2 {
+        margin: 0 0 8px;
+        font-size: 26px;
+        font-weight: 800;
+      }
+
+      .loginCard > p {
+        margin: 0 0 24px;
+        font-size: 14px;
+        color: #475569;
+        line-height: 1.6;
+      }
+
+      .field {
+        margin-bottom: 18px;
+      }
+
+      .fieldLabel {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #334155;
+      }
+
+      .input,
+      .select {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        background: #ffffff;
+        color: #0f172a;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .input:focus,
+      .select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+      }
+
+      .scopeNote {
+        margin: 18px 0 24px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid rgba(15, 23, 42, 0.06);
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: #334155;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .primaryBtn,
+      .secondaryBtn {
+        border: none;
+        cursor: pointer;
+        border-radius: 14px;
+        padding: 13px 18px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .primaryBtn {
+        background: #0f172a;
+        color: #ffffff;
+      }
+
+      .secondaryBtn {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+
+      @media (max-width: 880px) {
+        .loginShell {
+          grid-template-columns: 1fr;
+        }
+
+        .heroCard h1 {
+          font-size: 30px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        body {
+          padding: 16px;
+        }
+
+        .heroCard,
+        .loginCard {
+          border-radius: 22px;
+          padding: 24px 20px;
+        }
+
+        .heroCard h1 {
+          font-size: 26px;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loginShell">
+      <section class="heroCard">
+        <div class="heroBadge">AI Widget Demo</div>
+        <h1>Acme Retail Sales Dashboard</h1>
+        <p>
+          Demo login for the parent website + embedded AI chat widget. After
+          logging in, the dashboard loads and the widget automatically scopes
+          itself to that user's role.
+        </p>
+
+        <div class="heroList">
+          <div class="heroItem">
+            <strong>Admin Access</strong>
+            <span>Full visibility across every region in the dataset.</span>
+          </div>
+          <div class="heroItem">
+            <strong>Regional Manager Access</strong>
+            <span>Scoped to a single region — North, South, East, or West.</span>
+          </div>
+          <div class="heroItem">
+            <strong>Embedded Widget Access</strong>
+            <span>Your login role is passed to the widget automatically — no manual setup.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="loginCard">
+        <h2>Login</h2>
+        <p>
+          Select a demo account below. The dashboard and embedded widget will
+          use that account's role automatically.
+        </p>
+
+        <div class="field">
+          <label class="fieldLabel" for="demoUserSelect">Login as demo user</label>
+          <select id="demoUserSelect" class="select">
+            <optgroup label="Admin Access">
+              <option value="admin">Admin (All Regions)</option>
+            </optgroup>
+            <optgroup label="Regional Manager Access">
+              <option value="manager_north">Regional Manager — North</option>
+              <option value="manager_south">Regional Manager — South</option>
+              <option value="manager_east">Regional Manager — East</option>
+              <option value="manager_west">Regional Manager — West</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="fieldLabel" for="passwordInput">Demo password</label>
+          <input
+            id="passwordInput"
+            class="input"
+            type="password"
+            value="demo123"
+            placeholder="Enter password"
+          />
+        </div>
+
+        <div id="scopeNote" class="scopeNote">Full visibility across every region.</div>
+
+        <div class="actions">
+          <button id="loginBtn" class="primaryBtn" type="button">Login</button>
+          <button id="resetBtn" class="secondaryBtn" type="button">Reset</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const DEMO_USERS = {
+        admin: {
+          role: "admin",
+          displayName: "Admin",
+          scopeLabel: "Full visibility across every region.",
+        },
+        manager_north: {
+          role: "manager_north",
+          displayName: "Regional Manager — North",
+          scopeLabel: "Scoped to the North region only.",
+        },
+        manager_south: {
+          role: "manager_south",
+          displayName: "Regional Manager — South",
+          scopeLabel: "Scoped to the South region only.",
+        },
+        manager_east: {
+          role: "manager_east",
+          displayName: "Regional Manager — East",
+          scopeLabel: "Scoped to the East region only.",
+        },
+        manager_west: {
+          role: "manager_west",
+          displayName: "Regional Manager — West",
+          scopeLabel: "Scoped to the West region only.",
+        },
+      };
+
+      function updateScopeNote(userKey) {
+        const user = DEMO_USERS[userKey];
+        document.getElementById("scopeNote").textContent = user
+          ? user.scopeLabel
+          : "";
+      }
+
+      document.getElementById("demoUserSelect").addEventListener("change", (e) => {
+        updateScopeNote(e.target.value);
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        document.getElementById("demoUserSelect").value = "admin";
+        document.getElementById("passwordInput").value = "demo123";
+        updateScopeNote("admin");
+      });
+
+      document.getElementById("loginBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const userKey = document.getElementById("demoUserSelect").value;
+        const password = document.getElementById("passwordInput").value.trim();
+
+        if (!password) {
+          alert("Please enter the demo password.");
+          return;
+        }
+
+        const user = DEMO_USERS[userKey];
+        if (!user) {
+          alert("Invalid demo user selected.");
+          return;
+        }
+
+        const sessionUser = {
+          ...user,
+          loginTime: new Date().toISOString(),
+        };
+
+        sessionStorage.setItem("demoUser", JSON.stringify(sessionUser));
+        localStorage.setItem("demoUser", JSON.stringify(sessionUser));
+
+        window.location.href = "./dashboard.html";
+      });
+
+      updateScopeNote(document.getElementById("demoUserSelect").value);
+    </script>
+  </body>
+</html>
