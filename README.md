@@ -1,4 +1,4 @@
-# AI Data Assistant Widget
+# PlannerChat — AI Business Planning Assistant
 
 An embeddable chat widget that lets users ask natural-language questions
 about a dataset, with **role-based access control** enforced server-side —
